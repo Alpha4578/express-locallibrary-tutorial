@@ -50,7 +50,8 @@ module.exports = app;
 
 //Set up mongoose connection
 var mongoose = require('mongoose');
-var mongoDB = 'mongodb+srv://camille-lenormand:9fHAPm8ieBjH8w16@cluster0-fl0ig.azure.mongodb.net/test?retryWrites=true&w=majority';
+var dev_db_url = 'mongodb+srv://camille-lenormand:9fHAPm8ieBjH8w16@cluster0-fl0ig.azure.mongodb.net/test?retryWrites=true&w=majority';
+var mongoDB = process.env.MONGODB_URI || dev_db_url;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
